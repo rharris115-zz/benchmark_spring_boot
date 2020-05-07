@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.Map;
+import java.util.OptionalDouble;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -14,23 +15,23 @@ public class EstimatePiController {
 
 
     @GetMapping("/estimate-pi/{n}")
-    public Map<String, Double> estimatePi(@PathVariable Integer n) {
+    public Map<String, ?> estimatePi(@PathVariable Integer n) {
 
+        final long start = System.nanoTime();
 
         final Random rnd = new Random();
 
-
-        final double piEstimate = 4d * Stream.generate(() -> {
+        final OptionalDouble piEstimate = Stream.generate(() -> {
             double x = rnd.nextDouble();
             double y = rnd.nextDouble();
-            return (x * x + y * y) < 1 ? 1 : 0;
+            return (x * x + y * y) < 1 ? 4 : 0; // Don't need to multiply later.
         })
                 .mapToInt(Integer::intValue)
                 .limit(n)
-                .sum()
-                / n;
+                .average();
 
+        final double elapsed = (System.nanoTime() - start) / 1e9;
 
-        return Map.of("estimated_pi", piEstimate);
+        return Map.of("estimatedPi", piEstimate.orElse(Double.NaN), "elapsed", elapsed);
     }
 }
