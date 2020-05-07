@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 public class EstimatePiController {
 
 
-    @GetMapping("/estimate_pi")
-    public Map<String, Double> greeting(@RequestParam(value = "n", defaultValue = "100") Integer n) {
+    @GetMapping("/estimate-pi")
+    public Map<String, Double> greeting(@RequestParam(name = "n") Integer n) {
 
 
         final Random rnd = new Random();
