@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.Random;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 @RestController
 public class EstimatePiController {
@@ -21,12 +21,11 @@ public class EstimatePiController {
 
         final Random rnd = new Random();
 
-        final OptionalDouble piEstimate = Stream.generate(() -> {
+        final OptionalDouble piEstimate = IntStream.generate(() -> {
             double x = rnd.nextDouble();
             double y = rnd.nextDouble();
-            return (x * x + y * y) < 1 ? 4 : 0; // Don't need to multiply later.
+            return (x * x + y * y) < 1 ? 4 : 0; // Don't need to multiply by 4 later.
         })
-                .mapToInt(Integer::intValue)
                 .limit(n)
                 .average();
 
