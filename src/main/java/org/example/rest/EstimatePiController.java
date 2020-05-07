@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 @RestController
@@ -15,7 +14,7 @@ public class EstimatePiController {
 
 
     @GetMapping("/estimate-pi")
-    public Map<String, Double> greeting(@RequestParam(name = "n") Integer n) {
+    public Map<String, Double> estimatePi(@RequestParam(name = "n") Integer n) {
 
 
         final Random rnd = new Random();
