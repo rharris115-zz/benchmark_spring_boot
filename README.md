@@ -2,7 +2,11 @@
 Endpoints and services were evaluated with the HTTP benchmarking tool [WRK](https://github.com/wg/wrk/blob/master/README.md).
 Given the limitations of the machinery used in this evaluation, all tests were done with 2 requesting threads and 20 connections.
 Each endpoint was tested for 120 seconds.
+
+The requests and responses were over a home LAN with Ethernet cable connections and other traffic minimised.
 # Services
+Three service configurations were used for the evaluation. An asynchronous Java server evaluation was provided as a basis
+for configuration along with two Python services.
 ## Java Spring Boot and Tomcat
 The service was implemented to enable asynchronous operation. Other implementation details were left to default settings.
 ## Python Flask and Werkzeug
@@ -24,6 +28,8 @@ public Map<String, String> greeting() {
 }
 ```
 ## "/sleep/{t}"
+An endpoint that sleeps for a specified number of seconds and returns this number of seconds. This seems to be a reasonable
+approximation of I/O bound services.
 ### Python
 ```python
 def get(self, t: float):
@@ -38,6 +44,9 @@ public Map<String, ?> sleep(final Float t) throws InterruptedException {
 }
 ```
 ## "/estimate-pi/{n}"
+A service that estimates the constant Pi by sampling uniformly distributed points on the unit square. The proportion that
+are within 1 unit of Euclidean distance to the origin will be roughly Pi/4. In Python and Java, no attempt is made to accelerate
+this calculation with more native, efficient code.
 ### Python
 ```python
 def get(self, n: int):
@@ -61,6 +70,7 @@ public Future<Double> estimatePiImpl(final int n) {
 }
 ```
 ## "/estimate-pi-np/{n}"
+A special Python endpoint for estimating Pi that uses numpy vector operations. There's no equivalent endpoint implemented in Java.
 ### Python
 ```python
 def get(self, n: int):
@@ -96,6 +106,7 @@ def get(self, n: int):
 | Requests/sec:           | /estimate-pi-np/100 | /estimate-pi-np/1000 | /estimate-pi-np/10000 | /estimate-pi-np/100000 | /estimate-pi-np/1000000 |
 | Flask and Werkzeug      | 364.54              | 368.24               | 373.19                | 193.96                 | 20.98                   |
 | Flask and Gunicorn      | 710.01              | 689.33               | 566.83                | 208.96                 | 20.64                   |
+
 # Server Machine
 ```cmd
 Hardware Overview:
@@ -113,6 +124,7 @@ Hardware Overview:
   Serial Number (system):	C07D9236DD6H
   Hardware UUID:	28058D27-E169-59CF-86BC-A2305236CC80
 ```
+
 # Client Machine
 ```cmd
 Hardware Overview:
@@ -132,7 +144,7 @@ Hardware Overview:
   Hardware UUID:	EC9919EC-AE69-5738-A4E5-C56CB25EB925
 ```
 
-## Results
+## Raw Results
 ### Java Spring Boot and Tomcat
 ```cmd
 Running 2m test @ http://192.168.0.10:8080/hello
@@ -349,7 +361,6 @@ Requests/sec:     20.98
 Transfer/sec:      4.15KB
 ```
 ### Flask and Gunicorn
-Gunicorn suggests to use (2 * cores) + 1 workers. For our 2 cores, this gives 5.
 ```cmd
 gunicorn --bind '0.0.0.0:8080' --workers=5 --threads=2 'benchmark:app'
 ```
