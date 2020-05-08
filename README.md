@@ -378,10 +378,10 @@ Richards-MacBook-Air:wrk rich$ ./wrk -t2 -c400 -d60s http://192.168.0.10:8000/es
 Running 1m test @ http://192.168.0.10:8000/estimate-pi-np/1000000
   2 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     0.00us    0.00us   0.00us     nan%
-    Req/Sec    10.57      5.58    30.00     59.02%
-  506 requests in 1.00m, 103.56KB read
-  Socket errors: connect 149, read 583, write 196, timeout 506
-Requests/sec:      8.42
-Transfer/sec:      1.72KB
+    Latency     1.03s   571.24ms   1.99s    58.14%
+    Req/Sec    11.56      6.03    30.00     57.42%
+  1295 requests in 1.00m, 265.07KB read
+  Socket errors: connect 149, read 429, write 68, timeout 1252
+Requests/sec:     21.55
+Transfer/sec:      4.41KB
 ```
