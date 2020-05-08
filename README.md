@@ -5,14 +5,14 @@ Each endpoint was tested for 120 seconds.
 
 The requests and responses were over a home LAN with Ethernet cable connections and other traffic minimised.
 # Services
-Three service configurations were used for the evaluation. An asynchronous Java server evaluation was provided as a basis
-for configuration along with two Python services.
+Three service configurations were used for the evaluation. An asynchronous Java service was provided as a basis
+of comparison with the two Python services.
 ## Java Spring Boot and Tomcat
-The service was implemented to enable asynchronous operation. Other implementation details were left to default settings.
+The service was implemented to enable asynchronous operation. Other implementation details were left as default.
 ## Python Flask and Werkzeug
-The default development service of Flask.
+The default development service of Flask with debug disabled.
 ## Python Flask and Gunicorn
-The server was run with `(2 * N(core)) + 1` workers as suggested by Gunicorn's documentation. Additionally, two threads per worker were specified.
+Gunicorn was run with `(2 * N(core)) + 1` workers as suggested by Gunicorn's documentation. Additionally, two threads per worker were specified to support i/o limited operations.
 # End Points
 ## "/hello"
 A basic "Hello World" endpoint.
