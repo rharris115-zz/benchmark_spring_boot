@@ -14,4 +14,5 @@ end_points=(/hello
 for end_point in "${end_points[@]}"; do
   $wrk_path/wrk/wrk -t$t -c$c -d$d http://$host$end_point
   echo ''
+  sleep 10
 done
