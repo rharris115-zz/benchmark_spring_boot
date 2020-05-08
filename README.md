@@ -92,7 +92,23 @@ def get(self, n: int):
 | Requests/sec:           | /estimate-pi-np/100 | /estimate-pi-np/1000 | /estimate-pi-np/10000 | /estimate-pi-np/100000 | /estimate-pi-np/1000000 |
 | Flask and Werkzeug      | 364.54              | 368.24               | 373.19                | 193.96                 | 20.98                   |
 | Flask and Gunicorn      | 710.01              | 689.33               | 566.83                | 208.96                 | 20.64                   |
+# Server Machine
+```cmd
+Hardware Overview:
 
+  Model Name:	Mac mini
+  Model Identifier:	Macmini4,1
+  Processor Name:	Intel Core 2 Duo
+  Processor Speed:	2.4 GHz
+  Number of Processors:	1
+  Total Number of Cores:	2
+  L2 Cache:	3 MB
+  Memory:	8 GB
+  Boot ROM Version:	76.0.0.0.0
+  SMC Version (system):	1.65f2
+  Serial Number (system):	C07D9236DD6H
+  Hardware UUID:	28058D27-E169-59CF-86BC-A2305236CC80
+```
 # Client Machine
 ```cmd
 Hardware Overview:
