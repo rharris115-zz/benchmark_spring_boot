@@ -30,6 +30,9 @@ public Map<String, String> greeting() {
 ## "/sleep/{t}"
 An endpoint that sleeps for a specified number of seconds and returns this number of seconds. This seems to be a reasonable
 approximation of I/O bound services.
+
+Three times were chosen, 0.1, 0.5, and 1.0 seconds.
+
 ### Python
 ```python
 def get(self, t: float):
@@ -47,6 +50,9 @@ public Map<String, ?> sleep(final Float t) throws InterruptedException {
 A service that estimates the constant Pi by sampling uniformly distributed points on the unit square. The proportion that
 are within 1 unit of Euclidean distance to the origin will be roughly Pi/4. In Python and Java, no attempt is made to accelerate
 this calculation with more native, efficient code.
+
+Five sample counts `n` were chosen, 100, 1000, 10000, 100000, and 1000000.
+
 ### Python
 ```python
 def get(self, n: int):
@@ -71,6 +77,9 @@ public Future<Double> estimatePiImpl(final int n) {
 ```
 ## "/estimate-pi-np/{n}"
 A special Python endpoint for estimating Pi that uses numpy vector operations. There's no equivalent endpoint implemented in Java.
+
+Again, five sample counts `n` were chosen, 100, 1000, 10000, 100000, and 1000000.
+
 ### Python
 ```python
 def get(self, n: int):
