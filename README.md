@@ -58,6 +58,35 @@ def get(self, n: int):
                                  + np.random.uniform(size=n) ** 2) < 1).mean()}
 ```
 
+# Summarised Results
+## Hello World
+
+| Requests/sec:           | /hello |
+| ----------------------- | ------ |
+| Spring Boost and Tomcat | 6949.5 |
+| Flask and Werkzeug      | 408.3  |
+| Flask and Gunicorn      | 767.85 |
+
+## Sleep
+
+| Requests/sec:           | /sleep/0.1 | /sleep/0.5 | /sleep/1.0 |
+| ----------------------- | ---------- | ---------- | ---------- |
+| Spring Boost and Tomcat | 179.52     | 39.33      | 19.83      |
+| Flask and Werkzeug      | 183.24     | 39.18      | 19.7       |
+| Flask and Gunicorn      | 37.58      | 7.9        | 3.96       |
+
+### Estimate Pi
+
+| Requests/sec:           | /estimate-pi/100    | /estimate-pi/1000    | /estimate-pi/10000    | /estimate-pi/100000    | /estimate-pi/1000000    |
+| ----------------------- | ------------------- | -------------------- | --------------------- | ---------------------- | ----------------------- |
+| Spring Boost and Tomcat | 4749.05             | 3304.6               | 527.03                | 51.2                   | 5.04                    |
+| Flask and Werkzeug      | 390.09              | 378.25               | 120.45                | 15.46                  | 1.5                     |
+| Flask and Gunicorn      | 747.37              | 614.02               | 221.58                | 30.94                  | 3.22                    |
+|                         |                     |                      |                       |                        |                         |
+| Requests/sec:           | /estimate-pi-np/100 | /estimate-pi-np/1000 | /estimate-pi-np/10000 | /estimate-pi-np/100000 | /estimate-pi-np/1000000 |
+| Flask and Werkzeug      | 364.54              | 368.24               | 373.19                | 193.96                 | 20.98                   |
+| Flask and Gunicorn      | 710.01              | 689.33               | 566.83                | 208.96                 | 20.64                   |
+
 # Client Machine
 ```cmd
 Hardware Overview:
