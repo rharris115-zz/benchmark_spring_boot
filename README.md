@@ -1,5 +1,11 @@
+# Services
+## Java Spring Boot and Tomcat
+The service was implemented to enable asynchronous operation. Other implementation details were left to default settings.
+## Python Flask and Werkzeug
+The default development service of Flask.
+## Python Flask and Gunicorn
+The server was run with `(2 * N(core)) + 1` workers as suggested by Gunicorn's documentation. Additionally, two threads per worker were specified.
 # End Points
-
 ## "/hello"
 A basic "Hello World" endpoint.
 ### Python
