@@ -116,7 +116,7 @@ def get(self, n: int):
 | Flask and Werkzeug      | 364.54              | 368.24               | 373.19                | 193.96                 | 20.98                   |
 | Flask and Gunicorn      | 710.01              | 689.33               | 566.83                | 208.96                 | 20.64                   |
 
-# Server Machine
+# The Server
 ```cmd
 Hardware Overview:
 
@@ -134,7 +134,7 @@ Hardware Overview:
   Hardware UUID:	28058D27-E169-59CF-86BC-A2305236CC80
 ```
 
-# Client Machine
+# The Client
 ```cmd
 Hardware Overview:
 
