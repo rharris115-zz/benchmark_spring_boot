@@ -1,3 +1,7 @@
+# Evaluation
+Endpoints and services were evaluated with the HTTP benchmarking tool [WRK](https://github.com/wg/wrk/blob/master/README.md).
+Given the limitations of the machinery used in this evaluation, all tests were done with 2 requesting threads and 20 connections.
+Each endpoint was tested for 120 seconds.
 # Services
 ## Java Spring Boot and Tomcat
 The service was implemented to enable asynchronous operation. Other implementation details were left to default settings.
