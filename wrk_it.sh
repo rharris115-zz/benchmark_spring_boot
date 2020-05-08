@@ -6,12 +6,12 @@ t=$3
 d=$4
 c=$5
 
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/hello
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/sleep/0.1
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/sleep/0.5
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/sleep/1.0
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/estimate-pi/100
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/estimate-pi/1000
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/estimate-pi/10000
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/estimate-pi/100000
-$wrk_path/wrk/wrk -t$t -c$c -d$d http://$host/estimate-pi/1000000
+end_points=(/hello
+  /sleep/0.1 /sleep/0.5 /sleep/1.0
+  /estimate-pi/100 /estimate-pi/1000 /estimate-pi/10000 /estimate-pi/100000 /estimate-pi/1000000
+  /estimate-pi-np/100 /estimate-pi-np/1000 /estimate-pi-np/10000 /estimate-pi-np/100000 /estimate-pi-np/1000000)
+
+for end_point in "${end_points[@]}"; do
+  $wrk_path/wrk/wrk -t$t -c$c -d$d http://$host$end_point
+  echo ''
+done
