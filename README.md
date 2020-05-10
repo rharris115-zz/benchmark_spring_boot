@@ -41,9 +41,9 @@ def get(self, t: float):
 ```
 ### Java
 ```java
-public Map<String, ?> sleep(final Float t) throws InterruptedException {
+public Future<Void> sleep(final float t) throws InterruptedException {
     Thread.sleep(Math.round(t * 1000));
-    return Map.of("slept", t);
+    return new AsyncResult<>(null);
 }
 ```
 ## "/estimate-pi/{n}"

@@ -23,14 +23,12 @@ public class PiEstimator {
     @Async
     public Future<Double> estimatePiImpl(final int n) {
 
-        final double estimatedPi = IntStream.generate(() -> {
-            double x = rnd.nextDouble();
-            double y = rnd.nextDouble();
-            return (x * x + y * y) < 1 ? 4 : 0; // Don't need to multiply by 4 later.
-        })
-                .limit(n)
-                .average()
-                .orElse(Double.NaN);
+        final double estimatedPi =
+                IntStream
+                        .generate(() -> (Math.pow(rnd.nextDouble(), 2) + Math.pow(rnd.nextDouble(), 2) < 1 ? 4 : 0))
+                        .limit(n)
+                        .average()
+                        .orElse(Double.NaN);
 
         return new AsyncResult<>(estimatedPi);
     }
